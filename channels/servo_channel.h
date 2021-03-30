@@ -32,7 +32,14 @@ Result_t Servo_Init( void );
 Result_t Servo_GetData(void *channel, uint8_t *array, uint8_t *length);
 uint32_t Servo_GetStatus(void *channel);
 
-
+class Servo_Channel : private Channel {
+	private:
+		uint8_t id;
+	public:
+		Servo_Channel(uint8_t id);
+		bool ExecCommand(uint8_t channel_id, std::string cmd, ...);
+		~Servo_Channel();
+};
 
 
 

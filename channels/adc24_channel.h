@@ -1,9 +1,8 @@
 #ifndef ADC24_CHANNEL_H__
 #define ADC24_CHANNEL_H__
 
+#include "channel.h"
 #include "cmds.h"
-#include "gpio.h"
-#include "measurement.h"
 
 typedef enum
 {
@@ -31,7 +30,12 @@ Result_t ADC24_Init( void );
 Result_t ADC24_GetData(void *channel, uint8_t *array, uint8_t *length);
 uint32_t ADC24_GetStatus(void *channel);
 
-
+class Adc24_Channel : private Channel {
+	public:
+		Adc24_Channel(uint8_t id);
+		bool ExecCommand(uint8_t channel_id, std::string cmd, ...);
+		~Adc24_Channel();
+};
 
 
 

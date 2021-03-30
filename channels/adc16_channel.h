@@ -34,8 +34,14 @@ Result_t ADC16_Init(Adc16_t * adc16, GPIO_Pin_t * input);
 Result_t ADC16_GetData(void *channel, uint8_t *array, uint8_t *length);
 uint32_t ADC16_GetStatus(void *channel);
 
-
-
+class Adc16_Channel : private Channel {
+	private:
+		uint8_t id;
+	public:
+		Adc16_Channel(uint8_t id);
+		bool ExecCommand(uint8_t channel_id, std::string cmd, ...);
+		~Adc16_Channel();
+};
 
 
 

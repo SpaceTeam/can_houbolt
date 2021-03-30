@@ -38,7 +38,14 @@ Result_t DigitalOut_Init(void *channel, GPIO_Pin_t * enable, GPIO_Pin_t * input)
 Result_t DigitalOut_GetData(void *channel, uint8_t *array, uint8_t *length);
 uint32_t DigitalOut_GetStatus(void *channel);
 
-
+class Digital_Out_Channel : private Channel {
+	private:
+		uint8_t id;
+	public:
+		Digital_Out_Channel(uint8_t id);
+		bool ExecCommand(uint8_t channel_id, std::string cmd, ...);
+		~Digital_Out_Channel();
+};
 
 
 #endif
