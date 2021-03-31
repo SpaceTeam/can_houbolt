@@ -17,7 +17,14 @@ typedef enum
 	ADC16_TOTAL_CMDS
 } ADC16_CMDs;
 
-extern const can_function adc16_array[];
+typedef enum
+{
+	ADC16_SINGLE_RESET_SETTINGS,
+	ADC16_SINGLE_SAMPLINGRATE,
+	ADC16_SINGLE_MODE,
+
+	ADC16_SINGLE_TOTAL_CMDS
+} ADC16_SINGLE_CMDs;
 
 
 typedef struct
