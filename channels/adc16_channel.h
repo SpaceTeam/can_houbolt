@@ -2,54 +2,37 @@
 #define ADC16_CHANNEL_H__
 
 #include "cmds.h"
-#include "gpio.h"
-#include "measurement.h"
+
+#define ADC16_DATA_N_BYTES 2
+
 typedef enum
 {
-	ADC16_RESET_SETTINGS,
-	ADC16_SAMPLINGRATE, //0 means disabled (not sampling at all)
-	ADC16_MODE, 		//digital in or analog in (maybe more settings)
-	ADC16_SET_OFFSET, 	//maybe like this or tare or both ??? (maybe set offset = 0xFFFF means tare)
-	//other stuff
+	ADC16_,
+	ADC16_REFRESH_DIVIDER
+} ADC16_VARIABLES;
 
-
+typedef enum
+{
+	ADC16_RESET_SETTINGS,		//NO payload
+	ADC16_STATUS,				//NO payload
+	ADC16_SET_VARIABLE,			//Adc16SetMsg_t
+	ADC16_GET_VARIABLE,			//Adc16GetMsg_t
+	
 
 	ADC16_TOTAL_CMDS
 } ADC16_CMDs;
 
-typedef enum
+
+typedef struct __attribute__((__packed__))
 {
-	ADC16_SINGLE_RESET_SETTINGS,
-	ADC16_SINGLE_SAMPLINGRATE,
-	ADC16_SINGLE_MODE,
+	ADC16_VARIABLES variable_id;
+	uint32_t value;
+}Adc16SetMsg_t;
 
-	ADC16_SINGLE_TOTAL_CMDS
-} ADC16_SINGLE_CMDs;
-
-
-typedef struct
+typedef struct __attribute__((__packed__))
 {
-	uint8_t channel_index; //ToDo: Probably unnecessary
-	int_least32_t offset;
-	int_least32_t thresholds[2];
-
-	Measurement * measurement;
-
-}Adc16_t;
-
-Result_t ADC16_Init(Adc16_t * adc16, GPIO_Pin_t * input);
-Result_t ADC16_GetData(void *channel, uint8_t *array, uint8_t *length);
-uint32_t ADC16_GetStatus(void *channel);
-
-class Adc16_Channel : private Channel {
-	private:
-		uint8_t id;
-	public:
-		Adc16_Channel(uint8_t id);
-		bool ExecCommand(uint8_t channel_id, std::string cmd, ...);
-		~Adc16_Channel();
-};
-
+	ADC16_VARIABLES variable_id;
+}Adc16GetMsg_t;
 
 
 

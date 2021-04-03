@@ -1,10 +1,7 @@
-#ifndef INC_CMDS_H__
-#define INC_CMDS_H__
-
+#ifndef CMDS_H__
+#define CMDS_H__
 
 #include <stdint.h>
-
-#include "board_config.h"
 
 #define MAX_CHANNELS 32
 
@@ -13,8 +10,8 @@ typedef enum
 	CHANNEL_TYPE_NODE_GENERIC,
 	CHANNEL_TYPE_NODE_SPECIFIC, //?????? Todo: Implement or probably remove
 	CHANNEL_TYPE_ADC16,
-	CHANNEL_TYPE_ADC16_SINGLE,
 	CHANNEL_TYPE_ADC24,
+	CHANNEL_TYPE_COMPUTED32,
 	CHANNEL_TYPE_DIGITAL_OUT,
 	CHANNEL_TYPE_SERVO,
 
@@ -32,16 +29,6 @@ typedef enum
 	CHANNEL_STATUS_ERROR,
 	CHANNEL_STATUS_NO_CHANNEL
 } CHANNEL_STATUS;
-
-
-
-typedef Result_t (* can_function)( void *, uint32_t *);
-
-
-
-
-
-
 
 
 

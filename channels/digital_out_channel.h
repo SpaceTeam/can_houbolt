@@ -2,13 +2,22 @@
 #define DIGITAL_OUT_CHANNEL_H__
 
 #include "cmds.h"
-#include "gpio.h"
-#include "measurement.h"
+
+#define DIGITAL_OUT_DATA_N_BYTES 2
 
 typedef enum
 {
-	DIGITAL_OUT_RESET_SETTINGS,
-	DIGITAL_OUT_SET_STATE,
+	DIGITAL_OUT_STATE,
+	DIGITAL_OUT_SENSOR_REFRESH_DIVIDER,
+} DIGITAL_OUT_VARIABLES;
+
+typedef enum
+{
+	DIGITAL_OUT_RESET_SETTINGS,		// NO payload
+	DIGITAL_OUT_STATUS,				// NO payload
+	DIGITAL_OUT_SET_VARIABLE,		// DigitalOutSetMsg_t
+	DIGITAL_OUT_GET_VARIABLE,		// DigitalOutGetMsg_t
+	DIGITAL_OUT_PWM_ENABLE,			// DigitalOutPwmEnableMsg_t
 
 	DIGITAL_OUT_TOTAL_CMDS
 } DIGITAL_OUT_CMDs;
@@ -17,35 +26,20 @@ typedef enum
 
 typedef struct __attribute__((__packed__))
 {
-	uint8_t state;
-	uint8_t mode;
-}DigialOut_SetStateMsg_t;
+	DIGITAL_OUT_VARIABLES variable_id;
+	uint32_t value;
+}DigitalOutSetMsg_t;
 
-
-extern const can_function digital_out_array[];
-
-typedef struct
+typedef struct __attribute__((__packed__))
 {
-	uint8_t channel_index; 		//ToDo: Probably unnecessary
-	Measurement * measurement;
-	uint_least8_t state;
-	uint_least8_t mode;
-	//GPIO_Pin_t * pin;
-}Digital_out_t;
+	DIGITAL_OUT_VARIABLES variable_id;
+}DigitalOutGetMsg_t;
 
-
-Result_t DigitalOut_Init(void *channel, GPIO_Pin_t * enable, GPIO_Pin_t * input);
-Result_t DigitalOut_GetData(void *channel, uint8_t *array, uint8_t *length);
-uint32_t DigitalOut_GetStatus(void *channel);
-
-class Digital_Out_Channel : private Channel {
-	private:
-		uint8_t id;
-	public:
-		Digital_Out_Channel(uint8_t id);
-		bool ExecCommand(uint8_t channel_id, std::string cmd, ...);
-		~Digital_Out_Channel();
-};
+typedef struct __attribute__((__packed__))
+{
+	uint8_t enable;
+	uint16_t duty_cycle;
+}DigitalOutPwmEnableMsg_t;
 
 
 #endif

@@ -3,47 +3,50 @@
 
 #include "cmds.h"
 
+#define DATA_SIZE_N_BYTES 4
+
 typedef enum
 {
-	SERVO_RESET_SETTINGS,
-	SERVO_SETPOS,
-	SERVO_SETSPEED,
-	SERVO_STATUS,
-	SERVO_GET_SETPOINT,
-	SERVO_SET_SENSORCHANNEL,
-	SERVO_SET_PID_PARAMETERS,
+	SERVO_POSITION,
+	SERVO_MAX_SPEED,
+	SERVO_MAX_TORQUE,
+	SERVO_MAX_ACCEL,
+	SERVO_SETPOINT,
+	SERVO_P_PARAM,
+	SERVO_I_PARAM,
+	SERVO_D_PARAM,
+	SERVO_SENSOR_CHANNEL_ID,
+	SERVO_SENSOR_REFRESH_DIVIDER
+} SERVO_VARIABLES;
 
+typedef enum
+{
+	SERVO_RESET_SETTINGS,		//NO payload
+	SERVO_STATUS,				//NO payload
+	SERVO_SET_VARIABLE,			//ServoSetMsg_t
+	SERVO_GET_VARIABLE,			//ServoGetMsg_t
+	SERVO_ENABLE_CONTROL_LOOP,	//ServoEnableControlLoopMsg_t
+	
 
 	SERVO_TOTAL_CMDS
 } SERVO_CMDs;
 
-extern const can_function servo_array[];
 
-
-typedef struct
+typedef struct __attribute__((__packed__))
 {
-	uint8_t channel_index; //ToDo: Probably unnecessary
-	uint_least16_t position_fb;
-	uint_least16_t position_set;
-	//other servo stuff
-}Servo_t;
+	SERVO_VARIABLES variable_id;
+	uint32_t value;
+}ServoSetMsg_t;
 
-Result_t Servo_Init( void );
-Result_t Servo_GetData(void *channel, uint8_t *array, uint8_t *length);
-uint32_t Servo_GetStatus(void *channel);
+typedef struct __attribute__((__packed__))
+{
+	SERVO_VARIABLES variable_id;
+}ServoGetMsg_t;
 
-class Servo_Channel : private Channel {
-	private:
-		uint8_t id;
-	public:
-		Servo_Channel(uint8_t id);
-		bool ExecCommand(uint8_t channel_id, std::string cmd, ...);
-		~Servo_Channel();
-};
-
-
-
-
+typedef struct __attribute__((__packed__))
+{
+	uint8_t enable;
+}ServoEnableControlLoopMsg_t;
 
 
 
