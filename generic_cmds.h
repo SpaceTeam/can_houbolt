@@ -34,7 +34,7 @@ typedef enum
 typedef struct __attribute__((__packed__))
 {
 	uint32_t firmware_version;
-	uint32_t channel_number;
+	uint32_t channel_mask;
 	uint8_t channel_type[MAX_CHANNEL_NUMBER];
 }NodeInfoMsg_t;
 
