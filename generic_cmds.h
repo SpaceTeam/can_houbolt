@@ -5,16 +5,28 @@
 
 #define MAX_CHANNEL_NUMBER 32
 
+
+typedef enum
+{
+	GENERIC_BUS1_VOLTAGE,
+	GENERIC_BUS2_VOLTAGE,
+	GENERIC_PWR_VOLTAGE,
+	GENERIC_PWR_CURRENT,
+	GENERIC_REFRESH_DIVIDER,
+	GENERIC_REFRESH_TIME
+} GENERIC_VARIABLES;
+
 typedef enum
 {
 	GENERIC_RESET_ALL_SETTINGS,		// NO payload
 	GENERIC_STATUS,					// NO payload
-	GENERIC_DATA,					// NO payload
+	GENERIC_DATA,					// TODO data stuff
+	GENERIC_SET_VARIABLE,			// GenericSetMsg_t
+	GENERIC_GET_VARIABLE,			// GenericGetMsg_t
 	GENERIC_SYNC_CLOCK,				// NO FUCKING IDEA
 	GENERIC_NODE_INFO,				// NodeInfoMsg_t
 	GENERIC_NODE_STATUS,			// NodeStatusMsg_t
 	GENERIC_SPEAKER,				// SpeakerMsg_t
-	GENERIC_CHANGE_REFRESHRATE,		// ChangeRefreshrateMsg_t
 	GENERIC_ENABLE_UART_DEBUGGING,	// NO payload
 
 	GENERIC_TOTAL_CMDS
@@ -52,10 +64,18 @@ typedef struct __attribute__((__packed__))
 	uint8_t count;				// number of beeps
 }SpeakerMsg_t;
 
+
+
 typedef struct __attribute__((__packed__))
 {
-	uint32_t data_refreshrate;
-	uint32_t status_refreshrate;
-}ChangeRefreshrateMsg_t;
+	GENERIC_VARIABLES variable_id;
+	uint32_t value;
+}GenericSetMsg_t;
+
+typedef struct __attribute__((__packed__))
+{
+	GENERIC_VARIABLES variable_id;
+}GenericGetMsg_t;
+
 
 #endif
