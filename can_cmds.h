@@ -1,7 +1,10 @@
 #ifndef CAN_CMDS_H_
 #define CAN_CMDS_H_
 
+#include <stdint.h>
+
 #define MAX_DATA_SIZE 64
+
 
 typedef enum
 {
@@ -50,8 +53,12 @@ typedef union
 	{
 		Can_MessageDataInfo_t info;
 		uint8_t cmd_id;
-		uint8_t *data;
-	} data;
+		union
+		{
+			uint8_t *uint8;
+			uint32_t *uint32;
+		} data;
+	} bit;
 	uint8_t uint8[MAX_DATA_SIZE];
 } Can_MessageData_t;
 

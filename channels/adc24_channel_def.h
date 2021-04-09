@@ -23,8 +23,4 @@ typedef enum
 } ADC24_CMDs;
 
 
-
-
-
-
 #endif
