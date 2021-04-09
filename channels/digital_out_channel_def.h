@@ -15,25 +15,13 @@ typedef enum
 {
 	DIGITAL_OUT_RESET_SETTINGS,		// NO payload
 	DIGITAL_OUT_STATUS,				// NO payload
-	DIGITAL_OUT_SET_VARIABLE,		// DigitalOutSetMsg_t
-	DIGITAL_OUT_GET_VARIABLE,		// DigitalOutGetMsg_t
+	DIGITAL_OUT_SET_VARIABLE,		// SetMsg_t
+	DIGITAL_OUT_GET_VARIABLE,		// GetMsg_t
 	DIGITAL_OUT_PWM_ENABLE,			// DigitalOutPwmEnableMsg_t
 
 	DIGITAL_OUT_TOTAL_CMDS
 } DIGITAL_OUT_CMDs;
 
-
-
-typedef struct __attribute__((__packed__))
-{
-	DIGITAL_OUT_VARIABLES variable_id;
-	uint32_t value;
-}DigitalOutSetMsg_t;
-
-typedef struct __attribute__((__packed__))
-{
-	DIGITAL_OUT_VARIABLES variable_id;
-}DigitalOutGetMsg_t;
 
 typedef struct __attribute__((__packed__))
 {

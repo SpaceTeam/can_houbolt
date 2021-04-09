@@ -15,25 +15,13 @@ typedef enum
 {
 	ADC24_RESET_SETTINGS,		//NO payload
 	ADC24_STATUS,				//NO payload
-	ADC24_SET_VARIABLE,			//Adc24SetMsg_t
-	ADC24_GET_VARIABLE,			//Adc24GetMsg_t
+	ADC24_SET_VARIABLE,			//SetMsg_t
+	ADC24_GET_VARIABLE,			//GetMsg_t
 	ADC24_CALIBRATE,			//NO payload
-
 
 	ADC24_TOTAL_CMDS
 } ADC24_CMDs;
 
-
-typedef struct __attribute__((__packed__))
-{
-	ADC24_VARIABLES variable_id;
-	uint32_t value;
-}Adc24SetMsg_t;
-
-typedef struct __attribute__((__packed__))
-{
-	ADC24_VARIABLES variable_id;
-}Adc24GetMsg_t;
 
 
 

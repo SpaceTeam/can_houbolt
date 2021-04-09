@@ -77,4 +77,19 @@ typedef union
 	uint8_t uint8[MAX_DATA_SIZE];
 } Can_MessageData_t;
 
+
+
+
+typedef struct __attribute__((__packed__))
+{
+	uint8_t variable_id;
+	uint32_t value;
+}SetMsg_t;
+
+typedef struct __attribute__((__packed__))
+{
+	uint8_t variable_id;
+}GetMsg_t;
+
+
 #endif
