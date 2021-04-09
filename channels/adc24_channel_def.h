@@ -17,7 +17,7 @@ typedef enum
 	ADC24_STATUS,				//NO payload
 	ADC24_SET_VARIABLE,			//Adc24SetMsg_t
 	ADC24_GET_VARIABLE,			//Adc24GetMsg_t
-	ADC16_CALIBRATE,			//NO payload
+	ADC24_CALIBRATE,			//NO payload
 
 
 	ADC24_TOTAL_CMDS

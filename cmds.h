@@ -54,7 +54,7 @@ typedef union
 	{
 		uint32_t direction :1;		//bit:    0   | CAN_MessageDirection_t
 		uint32_t node_id :6;		//bit:  6-1   | Node ID: 0 - 63
-		uint32_t buffer :2;			//bit:  8-7   | CAN_MessageBuffer_t
+		uint32_t special_cmd :2;	//bit:  8-7   | CAN_MessageSpecialCmd_t
 		uint32_t priority :2;		//bit: 10-9   | CAN_MessagePriority_t
 	} info;
 	uint32_t uint32;
