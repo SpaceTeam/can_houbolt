@@ -1,5 +1,5 @@
-#ifndef SERVO_CHANNEL_H__
-#define SERVO_CHANNEL_H__
+#ifndef SERVO_CHANNEL_DEF_H_
+#define SERVO_CHANNEL_DEF_H_
 
 #include "cmds.h"
 

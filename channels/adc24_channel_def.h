@@ -1,5 +1,5 @@
-#ifndef ADC24_CHANNEL_H__
-#define ADC24_CHANNEL_H__
+#ifndef ADC24_CHANNEL_DEF_H_
+#define ADC24_CHANNEL_DEF_H_
 
 #include "cmds.h"
 
@@ -17,7 +17,8 @@ typedef enum
 	ADC24_STATUS,				//NO payload
 	ADC24_SET_VARIABLE,			//Adc24SetMsg_t
 	ADC24_GET_VARIABLE,			//Adc24GetMsg_t
-	
+	ADC16_CALIBRATE,			//NO payload
+
 
 	ADC24_TOTAL_CMDS
 } ADC24_CMDs;

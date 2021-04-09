@@ -4,7 +4,7 @@
 #include <stdint.h>
 
 #define MAX_CHANNELS 32
-
+#define MAX_DATA_SIZE 64
 typedef enum
 {
 	CHANNEL_TYPE_UNKNOWN,
@@ -74,7 +74,7 @@ typedef union
 		uint8_t cmd_id;
 		uint8_t *data;
 	} data;
-	uint8_t uint8[CAN_ELMTS_ARRAY_SIZE];
+	uint8_t uint8[MAX_DATA_SIZE];
 } Can_MessageData_t;
 
 #endif

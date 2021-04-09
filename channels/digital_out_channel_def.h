@@ -1,5 +1,5 @@
-#ifndef DIGITAL_OUT_CHANNEL_H__
-#define DIGITAL_OUT_CHANNEL_H__
+#ifndef DIGITAL_OUT_CHANNEL_DEF_H_
+#define DIGITAL_OUT_CHANNEL_DEF_H_
 
 #include "cmds.h"
 
