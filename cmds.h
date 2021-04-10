@@ -5,7 +5,6 @@
 
 #include "can_cmds.h"
 
-#define MAX_CHANNELS 32
 typedef enum
 {
 	CHANNEL_TYPE_UNKNOWN,

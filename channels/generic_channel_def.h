@@ -5,7 +5,7 @@
 
 #define GENERIC_CHANNEL_ID 0x3F
 
-#define MAX_CHANNEL_NUMBER 32
+#define MAX_CHANNELS 32
 
 typedef enum
 {
@@ -51,7 +51,7 @@ typedef struct __attribute__((__packed__))
 {
 	uint32_t firmware_version;
 	uint32_t channel_mask;
-	uint8_t channel_type[MAX_CHANNEL_NUMBER];
+	uint8_t channel_type[MAX_CHANNELS];
 } NodeInfoMsg_t;
 
 typedef struct __attribute__((__packed__))
