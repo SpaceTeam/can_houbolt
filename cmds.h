@@ -31,7 +31,7 @@ typedef enum
 typedef struct __attribute__((__packed__))
 {
 	uint8_t variable_id;
-	uint32_t value;
+	int32_t value;
 }SetMsg_t;
 
 typedef struct __attribute__((__packed__))

@@ -4,7 +4,7 @@
 #include "cmds.h"
 
 
-#define GENERIC_NODE_CHANNEL_ID 0x3F
+#define GENERIC_CHANNEL_ID 0x3F
 
 #define MAX_CHANNEL_NUMBER 32
 

@@ -5,6 +5,9 @@
 
 #define MAX_DATA_SIZE 64
 
+#define CAN_MSG_LENGTH(payload_type) (sizeof(Can_MessageDataInfo_t) + sizeof(uint8_t) + sizeof((payload_type)))
+
+
 
 typedef enum
 {
