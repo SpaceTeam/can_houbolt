@@ -58,8 +58,8 @@ typedef union
 		uint8_t cmd_id;
 		union
 		{
-			uint8_t *uint8;
-			uint32_t *uint32;
+			uint8_t uint8[(MAX_DATA_SIZE - CAN_MSG_LENGTH(0))];
+			uint32_t uint32[(MAX_DATA_SIZE - CAN_MSG_LENGTH(0)) / 4];
 		} data;
 	} bit;
 	uint8_t uint8[MAX_DATA_SIZE];
