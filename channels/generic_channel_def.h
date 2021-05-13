@@ -34,8 +34,7 @@ typedef enum
 	GENERIC_RES_NODE_INFO,				// NodeInfoMsg_t
 	GENERIC_REQ_NODE_STATUS,			// NO payload
 	GENERIC_RES_NODE_STATUS,			// NodeStatusMsg_t
-	GENERIC_REQ_SET_SPEAKER,			// SpeakerMsg_t
-	GENERIC_RES_SET_SPEAKER,			// NO payload
+	GENERIC_REQ_SPEAKER,				// SpeakerMsg_t
 
 	GENERIC_TOTAL_CMDS
 } GENERIC_CMDs;
