@@ -7,7 +7,8 @@
 
 typedef enum
 {
-	ADC16_, ADC16_REFRESH_DIVIDER
+	ADC16_,
+	ADC16_REFRESH_DIVIDER
 } ADC16_VARIABLES;
 
 typedef enum

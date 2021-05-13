@@ -5,6 +5,7 @@
 
 #include "can_cmds.h"
 
+
 typedef enum
 {
 	CHANNEL_TYPE_UNKNOWN,
