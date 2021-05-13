@@ -14,13 +14,17 @@ typedef enum
 
 typedef enum
 {
-	ADC24_REQ_RESET_SETTINGS,		//NO payload
+	ADC16_REQ_RESET_SETTINGS,		// NO payload
+	ADC16_RES_RESET_SETTINGS,		// NO payload
+	ADC24_REQ_STATUS,				// NO payload
+	ADC24_RES_STATUS,				// TODO: some status msg
 	ADC24_REQ_SET_VARIABLE,			// SetMsg_t
 	ADC24_RES_SET_VARIABLE,			// SetMsg_t
 	ADC24_REQ_GET_VARIABLE,			// GetMsg_t
 	ADC24_RES_GET_VARIABLE,			// SetMsg_t
-	ADC24_REQ_CALIBRATE,			//NO payload
-	ADC24_RES_CALIBRATE,			//?? ACK
+	ADC24_REQ_CALIBRATE,			// NO payload
+	ADC24_RES_CALIBRATE,			// NO payload
+
 	ADC24_TOTAL_CMDS
 } ADC24_CMDs;
 

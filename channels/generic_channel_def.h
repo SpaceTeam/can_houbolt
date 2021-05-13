@@ -21,7 +21,9 @@ typedef enum
 typedef enum
 {
 	GENERIC_REQ_RESET_ALL_SETTINGS,		// NO payload
+	GENERIC_RES_RESET_ALL_SETTINGS,		// NO payload
 	GENERIC_REQ_SYNC_CLOCK,				// NO FUCKING IDEA
+	GENERIC_RES_SYNC_CLOCK,				// NO FUCKING IDEA
 	GENERIC_REQ_DATA,					// NO payload
 	GENERIC_RES_DATA,					// DataMsg_t
 	GENERIC_REQ_SET_VARIABLE,			// SetMsg_t
@@ -32,8 +34,8 @@ typedef enum
 	GENERIC_RES_NODE_INFO,				// NodeInfoMsg_t
 	GENERIC_REQ_NODE_STATUS,			// NO payload
 	GENERIC_RES_NODE_STATUS,			// NodeStatusMsg_t
-	GENERIC_REQ_SPEAKER,				// SpeakerMsg_t
-	GENERIC_REQ_ENABLE_UART_DEBUGGING,	// NO payload
+	GENERIC_REQ_SET_SPEAKER,			// SpeakerMsg_t
+	GENERIC_RES_SET_SPEAKER,			// NO payload
 
 	GENERIC_TOTAL_CMDS
 } GENERIC_CMDs;
@@ -61,7 +63,7 @@ typedef struct __attribute__((__packed__))
 {
 	ErrorFlag_t node_error_flags;
 	uint32_t channel_error_mask;
-	CHANNEL_STATUS channel_status[MAX_CHANNELS];
+	ChannelStatus_t channel_status[MAX_CHANNELS];
 } NodeStatusMsg_t;
 
 typedef struct __attribute__((__packed__))
