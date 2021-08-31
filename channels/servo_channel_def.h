@@ -3,12 +3,13 @@
 
 #include "cmds.h"
 
-#define DATA_SIZE_N_BYTES 4
+#define SERVO_DATA_N_BYTES 4
 
 typedef enum
 {
 	SERVO_POSITION,
-	SERVO_SETPOSITION,
+	SERVO_TARGET_POSITION,
+	SERVO_TARGET_PRESSURE,
 	SERVO_MAX_SPEED,
 	SERVO_MAX_ACCEL,
 	SERVO_MAX_TORQUE,
@@ -16,27 +17,26 @@ typedef enum
 	SERVO_I_PARAM,
 	SERVO_D_PARAM,
 	SERVO_SENSOR_CHANNEL_ID,
-	SERVO_SENSOR_REFRESH_DIVIDER,
 	SERVO_POSITION_STARTPOINT,
-	SERVO_POSITION_ENDPOINT
+	SERVO_POSITION_ENDPOINT,
+	SERVO_PWM_ENABLED,
+	SERVO_SENSOR_REFRESH_DIVIDER
 } SERVO_VARIABLES;
 
 typedef enum
 {
-	SERVO_RESET_SETTINGS,		//NO payload
-	SERVO_STATUS,				//NO payload
-	SERVO_SET_VARIABLE,			//SetMsg_t
-	SERVO_GET_VARIABLE,			//SetMsg_t
-	SERVO_ENABLE_CONTROL_LOOP,	//ServoEnableControlLoopMsg_t
-	SERVO_MOVE,	                //ServoMoveMsg_t
+	SERVO_REQ_RESET_SETTINGS,		//NO payload
+	SERVO_RES_RESET_SETTINGS,		//NO payload
+	SERVO_REQ_STATUS,				//NO payload
+	SERVO_RES_STATUS,				// TODO: some status msg
+	SERVO_REQ_SET_VARIABLE,			//SetMsg_t
+	SERVO_RES_SET_VARIABLE,			//SetMsg_t
+	SERVO_REQ_GET_VARIABLE,			//GetMsg_t
+	SERVO_RES_GET_VARIABLE,			//SetMsg_t
+	SERVO_REQ_MOVE,	                //ServoMoveMsg_t
 
 	SERVO_TOTAL_CMDS
 } SERVO_CMDs;
-
-typedef struct __attribute__((__packed__))
-{
-	uint8_t enable;
-} ServoEnableControlLoopMsg_t;
 
 typedef struct __attribute__((__packed__))
 {
