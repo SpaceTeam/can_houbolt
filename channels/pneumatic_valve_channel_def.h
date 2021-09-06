@@ -28,15 +28,8 @@ typedef enum
 	PNEUMATIC_VALVE_RES_SET_VARIABLE,			//SetMsg_t
 	PNEUMATIC_VALVE_REQ_GET_VARIABLE,			//GetMsg_t
 	PNEUMATIC_VALVE_RES_GET_VARIABLE,			//SetMsg_t
-	PNEUMATIC_VALVE_REQ_MOVE,	                //PneumaticValveMoveMsg_t
 
 	PNEUMATIC_VALVE_TOTAL_CMDS
 } PNEUMATIC_VALVE_CMDs;
-
-typedef struct __attribute__((__packed__))
-{
-	uint32_t position;
-	uint32_t interval;	//in ms
-} PneumaticValveMoveMsg_t;
 
 #endif
