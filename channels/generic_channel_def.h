@@ -2,8 +2,6 @@
 #define GENERIC_CMDS_H__
 
 #include "cmds.h"
-#include "threshold.h"
-#include "main.h"
 
 #define GENERIC_CHANNEL_ID 0x3F
 
