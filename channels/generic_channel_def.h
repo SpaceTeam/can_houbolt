@@ -9,6 +9,13 @@
 
 typedef enum
 {
+	EQUALS = 0,
+	LESS_THAN,
+	GREATER_THAN
+} Operation_t;
+
+typedef enum
+{
 	GENERIC_BUS1_VOLTAGE,
 	GENERIC_BUS2_VOLTAGE,
 	GENERIC_PWR_VOLTAGE,
@@ -21,7 +28,7 @@ typedef enum
 typedef enum
 {
 	GENERIC_REQ_RESET_ALL_SETTINGS = COMMON_REQ_RESET_SETTINGS,	// NO payload
-	GENERIC_REQ_RESET_ALL_SETTINGS = COMMON_RES_RESET_SETTINGS,	// NO payload
+	GENERIC_RES_RESET_ALL_SETTINGS = COMMON_RES_RESET_SETTINGS,	// NO payload
 	GENERIC_REQ_STATUS = COMMON_REQ_STATUS,					// NO payload
 	GENERIC_RES_STATUS = COMMON_RES_STATUS,					// TODO: some status msg
 	GENERIC_REQ_SET_VARIABLE = COMMON_REQ_SET_VARIABLE,		// SetMsg_t
@@ -90,7 +97,7 @@ typedef struct __attribute__((__packed__))
 	uint8_t var_id;
 	Operation_t compare_id;
 	int32_t threshold;
-	Result_t result;
+	CHANNEL_STATUS result;
 	uint8_t or_threshold_id;
 	uint8_t and_threshold_id;
 } ThresholdMsg_t;
