@@ -41,5 +41,18 @@ typedef struct __attribute__((__packed__))
 	uint8_t variable_id;
 }GetMsg_t;
 
+typedef enum
+{
+	COMMON_REQ_RESET_SETTINGS,		// NO payload
+	COMMON_RES_RESET_SETTINGS,		// NO payload
+	COMMON_REQ_STATUS,				// NO payload
+	COMMON_RES_STATUS,				// TODO: some status msg
+	COMMON_REQ_SET_VARIABLE,			// SetMsg_t
+	COMMON_RES_SET_VARIABLE,			// SetMsg_t
+	COMMON_REQ_GET_VARIABLE,			// GetMsg_t
+	COMMON_RES_GET_VARIABLE,			// SetMsg_t
+
+	COMMON_TOTAL_CMDS
+} COMMON_CMDs;
 
 #endif

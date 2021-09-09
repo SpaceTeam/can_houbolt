@@ -2,6 +2,8 @@
 #define GENERIC_CMDS_H__
 
 #include "cmds.h"
+#include "threshold.h"
+#include "main.h"
 
 #define GENERIC_CHANNEL_ID 0x3F
 
@@ -20,21 +22,24 @@ typedef enum
 
 typedef enum
 {
-	GENERIC_REQ_RESET_ALL_SETTINGS,		// NO payload
-	GENERIC_RES_RESET_ALL_SETTINGS,		// NO payload
-	GENERIC_REQ_SYNC_CLOCK,				// NO FUCKING IDEA
-	GENERIC_RES_SYNC_CLOCK,				// NO FUCKING IDEA
-	GENERIC_REQ_DATA,					// NO payload
-	GENERIC_RES_DATA,					// DataMsg_t
-	GENERIC_REQ_SET_VARIABLE,			// SetMsg_t
-	GENERIC_RES_SET_VARIABLE,			// SetMsg_t
-	GENERIC_REQ_GET_VARIABLE,			// GetMsg_t
-	GENERIC_RES_GET_VARIABLE,			// SetMsg_t
-	GENERIC_REQ_NODE_INFO,				// NO payload
-	GENERIC_RES_NODE_INFO,				// NodeInfoMsg_t
-	GENERIC_REQ_NODE_STATUS,			// NO payload
-	GENERIC_RES_NODE_STATUS,			// NodeStatusMsg_t
-	GENERIC_REQ_SPEAKER,				// SpeakerMsg_t
+	GENERIC_REQ_RESET_SETTINGS = COMMON_REQ_RESET_SETTINGS,	// NO payload
+	GENERIC_RES_RESET_SETTINGS = COMMON_RES_RESET_SETTINGS,	// NO payload
+	GENERIC_REQ_STATUS = COMMON_REQ_STATUS,					// NO payload
+	GENERIC_RES_STATUS = COMMON_RES_STATUS,					// TODO: some status msg
+	GENERIC_REQ_SET_VARIABLE = COMMON_REQ_SET_VARIABLE,		// SetMsg_t
+	GENERIC_RES_SET_VARIABLE = COMMON_RES_SET_VARIABLE,		// SetMsg_t
+	GENERIC_REQ_GET_VARIABLE = COMMON_REQ_GET_VARIABLE,		// GetMsg_t
+	GENERIC_RES_GET_VARIABLE = COMMON_RES_GET_VARIABLE,		// SetMsg_t
+	GENERIC_REQ_SYNC_CLOCK = COMMON_TOTAL_CMDS,				// NO FUCKING IDEA
+	GENERIC_RES_SYNC_CLOCK,									// NO FUCKING IDEA
+	GENERIC_REQ_DATA,										// NO payload
+	GENERIC_RES_DATA,										// DataMsg_t
+	GENERIC_REQ_NODE_INFO,									// NO payload
+	GENERIC_RES_NODE_INFO,									// NodeInfoMsg_t
+	GENERIC_REQ_NODE_STATUS,								// NO payload
+	GENERIC_RES_NODE_STATUS,								// NodeStatusMsg_t
+	GENERIC_REQ_SPEAKER,									// SpeakerMsg_t
+	GENERIC_REQ_THRESHOLD,									// ThresholdMsg_t
 
 	GENERIC_TOTAL_CMDS
 } GENERIC_CMDs;
@@ -78,5 +83,18 @@ typedef struct __attribute__((__packed__))
 	uint16_t off_time;			// in ms
 	uint8_t count;				// number of beeps
 } SpeakerMsg_t;
+
+typedef struct __attribute__((__packed__))
+{
+	uint8_t channel_id;
+	uint8_t threshold_id;
+	uint8_t enabled;			// (0,1)
+	uint8_t var_id;
+	Operation_t compare_id;
+	int32_t threshold;
+	Result_t result;
+	uint8_t or_threshold_id;
+	uint8_t and_threshold_id;
+} ThresholdMsg_t;
 
 #endif
