@@ -52,7 +52,7 @@ typedef enum
 
 typedef enum
 {
-	SUCCESS, //returns when set state was successful
+	WRITE_SUCCESS, //returns when set state was successful
 	FAILURE_WRITE_PROTECTED, //returns when set state but write protected
 	WRITABLE, //returns on get state when writable
 	WRITE_PROTECTED //returns on get state when write protected
