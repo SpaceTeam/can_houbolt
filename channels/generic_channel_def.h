@@ -22,7 +22,8 @@ typedef enum
 	GENERIC_PWR_CURRENT,
 	GENERIC_UART_ENABLED,
 	GENERIC_REFRESH_DIVIDER,
-	GENERIC_REFRESH_RATE
+	GENERIC_REFRESH_RATE,
+	GENERIC_LOGGING_ENABLED
 } GENERIC_VARIABLES;
 
 typedef enum
@@ -45,6 +46,8 @@ typedef enum
 	GENERIC_RES_NODE_STATUS,								// NodeStatusMsg_t
 	GENERIC_REQ_SPEAKER,									// SpeakerMsg_t
 	GENERIC_REQ_THRESHOLD,									// ThresholdMsg_t
+	GENERIC_REQ_FLASH_CLEAR,								// NO payload
+	GENERIC_RES_FLASH_CLEAR,								// FlashClearMsg_t
 
 	GENERIC_TOTAL_CMDS
 } GENERIC_CMDs;
@@ -58,6 +61,12 @@ typedef enum
 	ERROR_FLAG_OVERCURRENT_THLD1 = 0x0010
 
 } ERROR_FLAG;
+
+typedef enum
+{
+	INITIATED, //returns when flash clear started
+	COMPLETED, //returns when flash clear finished
+} FLASH_CLEAR_STATUS;
 
 typedef uint32_t ErrorFlag_t;
 
@@ -101,5 +110,10 @@ typedef struct __attribute__((__packed__))
 	uint8_t or_threshold_id;
 	uint8_t and_threshold_id;
 } ThresholdMsg_t;
+
+typedef struct __attribute__((__packed__))
+{
+	uint8_t status;
+} FlashClearMsg_t;
 
 #endif
