@@ -46,8 +46,8 @@ typedef enum
 	GENERIC_RES_NODE_STATUS,								// NodeStatusMsg_t
 	GENERIC_REQ_SPEAKER,									// SpeakerMsg_t
 	GENERIC_REQ_THRESHOLD,									// ThresholdMsg_t
-	GENERIC_REQ_FLASH_CLEAR,								// NO payload
-	GENERIC_RES_FLASH_CLEAR,								// FlashClearMsg_t
+	GENERIC_REQ_FLASH_STATUS,								// NO payload
+	GENERIC_RES_FLASH_STATUS,								// FlashStatusMsg_t
 
 	GENERIC_TOTAL_CMDS
 } GENERIC_CMDs;
@@ -64,8 +64,9 @@ typedef enum
 
 typedef enum
 {
-	INITIATED, //returns when flash clear started
-	COMPLETED, //returns when flash clear finished
+	INITIATED, 	//returns when flash clear started
+	COMPLETED, 	//returns when flash clear finished
+	FULL, 		//returns when flash is full
 } FLASH_CLEAR_STATUS;
 
 typedef uint32_t ErrorFlag_t;
@@ -114,6 +115,6 @@ typedef struct __attribute__((__packed__))
 typedef struct __attribute__((__packed__))
 {
 	uint8_t status;
-} FlashClearMsg_t;
+} FlashStatusMsg_t;
 
 #endif
