@@ -46,7 +46,7 @@ typedef enum
 	GENERIC_RES_NODE_STATUS,								// NodeStatusMsg_t
 	GENERIC_REQ_SPEAKER,									// SpeakerMsg_t
 	GENERIC_REQ_THRESHOLD,									// ThresholdMsg_t
-	GENERIC_REQ_FLASH_STATUS,								// NO payload
+	GENERIC_REQ_FLASH_CLEAR,								// NO payload
 	GENERIC_RES_FLASH_STATUS,								// FlashStatusMsg_t
 
 	GENERIC_TOTAL_CMDS
@@ -67,7 +67,7 @@ typedef enum
 	INITIATED, 	//returns when flash clear started
 	COMPLETED, 	//returns when flash clear finished
 	FULL, 		//returns when flash is full
-} FLASH_CLEAR_STATUS;
+} FLASH_STATUS;
 
 typedef uint32_t ErrorFlag_t;
 
