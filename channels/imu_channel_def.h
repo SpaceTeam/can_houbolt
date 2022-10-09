@@ -3,7 +3,7 @@
 
 #include "cmds.h"
 
-#define IMU_DATA_N_BYTES 12
+#define IMU_DATA_N_BYTES 2
 
 typedef enum
 {
