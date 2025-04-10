@@ -4,6 +4,8 @@
 #include "cmds.h"
 
 #define CAN_MONITOR_DATA_N_BYTES 6
+#define ECR_SIZE 24
+#define PSR_SIZE 23
 
 typedef enum
 {
@@ -34,8 +36,8 @@ typedef union {
 	} bits;
 
 	struct {
-		uint32_t ecr :24;  // Raw access to FDCAN_ECR register (offset 0x0040)
-		uint32_t psr :23;  // Raw access to FDCAN_PSR register (offset 0x0044)
+		uint32_t ecr :ECR_SIZE;  // Raw access to FDCAN_ECR register (offset 0x0040)
+		uint32_t psr :PSR_SIZE;  // Raw access to FDCAN_PSR register (offset 0x0044)
 	} raw;
 } FDCAN_StatusRegisters_t;
 
