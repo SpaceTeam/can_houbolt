@@ -11,12 +11,49 @@ typedef enum {
 	CAN_MONITOR_REFRESH_DIVIDER
 } CAN_MONITOR_VARIABLES;
 
+#include <cstdint>
+#include <cstring>
+
+template <typename T, int Offset, int Width>
+struct BitField {
+	constexpr T get(const unsigned long long raw) {
+		return static_cast<T>((raw >> Offset) & ((1u << Width) - 1));
+	}
+
+	constexpr void set(unsigned long long& raw, T value) {
+		const uint32_t mask = ((1u << Width) - 1) << Offset;
+		raw = (raw & ~mask) | ((static_cast<uint32_t>(value) << Offset) & mask);
+	}
+};
+namespace FDCAN_StatusRegisters {
+    namespace ECR_Fields {
+        constexpr BitField<uint8_t, 0, 8> TEC;
+        constexpr BitField<uint8_t, 8, 7> REC;
+        constexpr BitField<bool, 15, 1> RP;
+        constexpr BitField<uint8_t, 16, 8> CEL;
+    }
+    namespace PSR_Fields {
+        constexpr BitField<uint8_t, 0, 3> LEC;
+        constexpr BitField<uint8_t, 3, 2> ACT;
+        constexpr BitField<bool, 5, 1> EP;
+        constexpr BitField<bool, 6, 1> EW;
+        constexpr BitField<bool, 7, 1> BO;
+        constexpr BitField<uint8_t, 8, 3> DLEC;
+        constexpr BitField<bool, 11, 1> RESI;
+        constexpr BitField<bool, 12, 1> RBRS;
+        constexpr BitField<bool, 13, 1> REDL;
+        constexpr BitField<bool, 14, 1> PXE;
+    }
+	constexpr BitField<uint32_t,0,24> ECR;
+	constexpr BitField<uint32_t,25,32> PSR;
+} // namespace FDCAN
+
 typedef union {
 	struct {
 		// ---------- Word 0: FDCAN_ECR (0x0040) ----------
 		uint32_t TEC:  8;  // Bits  0–7   - Transmit Error Counter
 		uint32_t REC:  7;  // Bits  8–14  - Receive Error Counter
-		uint32_t RP:   1;   // Bit   15    - Receive Error Passive Flag
+		uint32_t RP:   1;   // Bit   15    - Receijkkkkkkkkkkkkkkkkkkkkhjjjjjjjjjjjjjjjgh  ve Error Passive Flag
 		uint32_t CEL:  8;  // Bits 16–23  - CAN Error Logging
 		// ---------- Word 1: FDCAN_PSR (0x0040) ----------
 		uint32_t LEC:  3;  // Bits  0–2   - Last Error Code
