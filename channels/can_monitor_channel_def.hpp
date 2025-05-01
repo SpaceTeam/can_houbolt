@@ -15,7 +15,7 @@ typedef enum {
 
 template <typename T, int Offset, uint8_t Width>
 struct BitField {
-	static_assert(std::is_integral<T>::value, "BitField can only be used with integral types");
+	static_assert(std::is_integral_v<T>, "BitField can only be used with integral types");
 	static_assert(Width < 64, "BitField width must be less than or equal to 32");
 	static_assert(Width < 64, "BitField width must be less than or equal to 32");
 	static_assert(Offset + Width <= 64, "BitField offset and width must fit within 64 bits");
@@ -27,7 +27,7 @@ struct BitField {
 
 	constexpr void set(uint64_t& raw, T value) const {
 		const uint64_t mask = ((static_cast<uint64_t>(1) << Width) - 1) << Offset;
-		raw = (raw & ~mask) | ((static_cast<uint32_t>(value) << Offset) & mask);
+		raw = (raw & ~mask) | ((static_cast<uint64_t>(value) << Offset) & mask);
 	}
 };
 
@@ -39,23 +39,21 @@ namespace FDCAN_StatusRegisters {
 		constexpr BitField<uint8_t, 16, 8> CEL;
 	}
 	namespace PSR_Fields {
-		constexpr BitField<uint8_t, 0, 3> LEC;
-		constexpr BitField<uint8_t, 3, 2> ACT;
-		constexpr BitField<bool, 5, 1> EP;
-		constexpr BitField<bool, 6, 1> EW;
-		constexpr BitField<bool, 7, 1> BO;
-		constexpr BitField<uint8_t, 8, 3> DLEC;
-		constexpr BitField<bool, 11, 1> RESI;
-		constexpr BitField<bool, 12, 1> RBRS;
-		constexpr BitField<bool, 13, 1> REDL;
-		constexpr BitField<bool, 14, 1> PXE;
+		constexpr BitField<uint8_t, 24, 3> LEC;
+		constexpr BitField<uint8_t, 27, 2> ACT;
+		constexpr BitField<bool, 29, 1> EP;
+		constexpr BitField<bool, 30, 1> EW;
+		constexpr BitField<bool, 31, 1> BO;
+		constexpr BitField<uint8_t, 32, 3> DLEC;
+		constexpr BitField<bool, 35, 1> RESI;
+		constexpr BitField<bool, 36, 1> RBRS;
+		constexpr BitField<bool, 37, 1> REDL;
+		constexpr BitField<bool, 38, 1> PXE;
+		constexpr BitField<bool, 40, 7> TDCV; // 1 difference here because the 15th bit of the PCR reg is not used
 	}
 	constexpr BitField<uint32_t,0,ECR_SIZE> ECR;
 	constexpr BitField<uint32_t,ECR_SIZE+1,PSR_SIZE> PSR;
-} // namespace FDCAN
-#include <cstdint>
-
-#include <cstring>
+}
 
 typedef enum {
 	CAN_MONITOR_REQ_STATUS = COMMON_REQ_STATUS, // NO payload
