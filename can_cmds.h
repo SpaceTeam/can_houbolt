@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-#define MAX_DATA_SIZE 64
+#define MAX_DATA_SIZE 128
 
 #define CAN_MSG_LENGTH(payload_length) ( sizeof(Can_MessageDataInfo_t) + sizeof(uint8_t) + payload_length )
 
