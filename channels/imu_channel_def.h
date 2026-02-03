@@ -35,6 +35,9 @@ typedef struct __attribute__((__packed__))
 	uint16_t x_alpha;	// x-axis angular acceleration
 	uint16_t y_alpha;	// y-axis angular acceleration
 	uint16_t z_alpha;	// z-axis angular acceleration
+	uint16_t x_speed;	// x-axis speed
+	uint16_t y_speed;	// y-axis speed
+	uint16_t z_alpha;	// z-axis speed
 } IMUMsg_t;
 
 #endif
